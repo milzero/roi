@@ -17,7 +17,7 @@
 
 可能的会话使用的网络协议范围意味着，编写RTP终端系统，应该使其在本质上与底层传输无关。一种好的设计是将传输地址和端口的信息限制在你的底层网络代码，并使用RTP级别的机制进行参与者识别。 RTP为此提供了一个“同步源”，本章稍后将对此进行详细介绍。
 
-![ RTP 会话类型](./image/4.1.png)
+![ RTP 会话类型](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/4.1.png)
 
 在实际应用中应注意：
 
@@ -35,7 +35,7 @@ RTP 数据包的格式在图4.2 中进行了说明。数据包分为四个部分
 - 可选的有效负载头（取决于所使用的有效负载类型）
 - 有效负载数据本身
 
-![RTP数据传输包](./image/4.2.png)
+![RTP数据传输包](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/4.2.png)
 
 通常RTP包由更底层的协议承载，例如UDP/IP.
 
@@ -51,9 +51,9 @@ RTP报头的Tpayload type T或TPTT字段标识RTP包传输的媒体。接收应�
 
 有效负载类型是根据MIME名称空间命名的。该名称空间最初是为电子邮件定义的，用于标识附件的内容，但此后它已成为媒体格式的通用名称空间，并在许多应用中使用。 MIME类型在RTP的使用相对较新(有效负载类型名称最初占用一个单独的名称空间) , 但它功能强大，为每种类型的媒体提供了一个中央存储库的传输和编码选项。
 
-![Example of static RTP payload](./image/Table4.1.png)
+![Example of static RTP payload](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Table4.1.png)
 
-![Example of static RTP payload](./image/Table4.1.1.png)
+![Example of static RTP payload](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Table4.1.1.png)
 
 所有负载类型都应该具有MIME类型注册。更新的有效负载类型将其包含在其各自规范中
 
@@ -166,7 +166,7 @@ RTP时间戳的连续性对流媒体服务器的设计有影响。服务器不�
 
 MPEG视频就是一个例子，它既包含关键帧又包括从中预测的前向（P帧）和向后（B帧）预测的增量编码帧。当使用B帧时，它们是从后面的数据包中预测出来的，因此必须延迟并乱序发送。结果是RTP流将具有非单调递增的时间戳。另一个例子，用交织编码减少突丢包的影响（请参见第八章错误隐藏中标题为交织的部分）。任何情况下，接收端都必须重构单调时间线播放媒体。
 
-![合并两个有序时间戳](./image/4.3.png)
+![合并两个有序时间戳](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/4.3.png)
 
 RTP数据包上的时间戳在每个翻转周期内不一定是唯一的。如果两个数据包包含来自同一采样时刻的数据，则它们将具有相同的时间戳。时间戳的重复通常发生在将大视频帧拆分为多个RTP数据包进行传输时（这些数据包将具有不同的序号，但具有相同的时间戳）。
 
@@ -218,7 +218,7 @@ RTP包头中的padding（P）位用于标识有效负载已被填充超过其自
 
 作为填充的使用示例，图4.4展示了以RTP打包的GSM音频帧，该帧已从其自然长度45个字节（GSM帧为33个，RTP头为12个）的自然长度填充为48个八位字节。如果使用数据加密标准（DES）对数据包进行加密，则需要填充数据，因为DES需要8字节（64位）的块。
 
-![](./image/4.4.png)
+![](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/4.4.png)
 
 ### 版本号 VERSION NUMBER
 
@@ -316,7 +316,7 @@ mixer 是一个中间系统，它从一组源中接收RTP数据包并将其组�
 
 跟踪转换器或混流器每一侧上存在哪些源非常重要
 
-![转换器或混流](./image/4.5.png)
+![转换器或混流](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/4.5.png)
 
 当错误的配置产生了环路时（例如，如果两个转换器或混流器并行连接，则将数据包循环转发）。如果检测到循环，则转换器或混流器应停止操作，并记录尽可能多的诊断信息。循环数据包的源IP地址最有用，因为它标识了导致循环的主机。
 
