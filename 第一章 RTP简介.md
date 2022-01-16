@@ -72,7 +72,7 @@ RTP 是由 IETF 的音频/视频传输工作组开发的，后来被国际电联
 除了 RTP 之外，完整的系统通常还需要使用各种其他协议和标准来进行会话通知、启动和控制，媒体压缩和网络传输。
 
 图 1.1 显示了根据 IETF 和国际电信联盟会议框架，协商和呼叫控制协议、媒体传输层(由 RTP 提供)、压缩解码算法(codecs)和底层网络之间的关系。这两套并行的呼叫控制和媒体协商标准使用相同的媒体传输框架。同样，不管会话是如何协商的，也不管底层网络传输是什么，媒体编解码器都是通用的。
-![](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure1.1.png)
+![](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/img/image/Figure1.1.png)
 
 这些标准和 RTP 之间的关系在第 3 章实时传输协议中有详细的描述。但是，这本书的主要主要聚焦媒体传输，而不是信号和控制。
 
@@ -83,7 +83,7 @@ RTP 是由 IETF 的音频/视频传输工作组开发的，后来被国际电联
 RTP 发送端的行为
 
 发送端负责采集和转换用于传输的视听数据，以及生成 RTP 包。它还可以通过调整传输的媒体流以响应接收端的反馈来参与错误恢复和拥塞控制。发送过程的关系如图 1.2 所示。
-![](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure1.2.png)
+![](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/img/image/Figure1.2.png)
 
 未压缩的媒体数据(音频或视频)被采集到缓冲区中，产生压缩帧。帧可以根据使用的压缩算法以多种方式进行编码，编码后的帧可能同时依赖于之前和之后的数据。
 
@@ -97,7 +97,7 @@ RTP 接收端的行为
 
 接收端负责从网络中收集 RTP 数据包，恢复丢失的数据，纠正时序，解码媒体，并将结果显示给用户。还需要发送接收质量反馈，允许发送端调整到接收端的传输，并维护会话中参与者的数据库。接收过程可能的方框图如图 1.3 所示;然而具体实现有时根据需要以不同的顺序执行操作。
 
-![](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure1.3.png)
+![](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/img/image/Figure1.3.png)
 
 接收过程的第一步是收集来自网络的数据包，验证它们的正确性，并将它们插入到特定发送端的输入队列中。从输入队列中收集数据包，并将其传递给可选的信道编码例行程序以恢复丢失的数据。在通道编码器之后，数据包被插入到指定源的播放缓冲区中。播放缓冲区按时间戳排序，将数据包插入缓冲区的过程纠正了传输期间引起的排序错乱。数据包一直保留在播放缓冲区中，直到接收到完整的帧为止，另外还对它们进行额外的缓冲，以消除由网络引起的包间计时的任何变化。计算要添加的延迟量是 RTP 实现设计中最关键的方面之一。每个包都用相应帧所需的播放时间进行标记。
 

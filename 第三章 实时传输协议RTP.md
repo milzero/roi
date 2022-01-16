@@ -111,7 +111,7 @@ RTP 框架的两个可选部分在这个阶段值得一提：头压缩和多路�
 
 完整的多媒体协议栈如图 3.1 所示，展示了 RTP 框架与支持的设置和控制协议之间的关系。本书中所讨论的协议和功能已被重点标记。
 
-![](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/图 3.1 多媒体协议堆栈。png)
+![](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/img/image/图 3.1 多媒体协议堆栈。png)
 
 图 3.1 多媒体协议堆栈
 
