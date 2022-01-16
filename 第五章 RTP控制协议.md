@@ -33,7 +33,7 @@ RTCP协议规范中定义了五种类型的RTCP包：接收端报告（RR）、�
 
 ### 图5.1 基本的RTCP包格式
 
-![5.1的图片](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.1.png)
+![5.1的图片](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.1.png)
 
 五种包类型的包头都是4个八位字节组成的，包含五个字段。
 
@@ -49,7 +49,7 @@ RTCP包不会单独的被传输。它需要打包在一起形成复合包（comp
 
 ### RTCP包中复合包的结构
 
-![5.2的图片](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.2.png)
+![5.2的图片](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.2.png)
 
 RTCP的复合包的组成由一组规则来控制。在对五种RTCP包进行更详细的描述之后，这些规则会在本章的“打包问题”中进行描述。
 
@@ -61,7 +61,7 @@ RTCP的主要用途之一就是接收质量报告，它通过接收数据的所�
 
 接收报告由类型由201标识，格式如图5.3。接收端报告中包含发送报告的参与者（报告者SSRC）的SSRC（同步源），后面跟着0个或多个报告块，用RC字段表示。
 
-![图5.3 RTCP包中的RR格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.3.png)
+![图5.3 RTCP包中的RR格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.3.png)
 
 > 许多RTCP的包类型在固定部分的后面有一个条目列表（Item List），这个结构类似于接收端报告。所以此处需要注意，即使条目列表是空的，数据包的固定部分仍然保持不变，这也就是说，如果接收端报告中没有报告块（report block），那么要将数据包中的RC设置为0，长度设置为1，对应4个8bit的固定RTCP包头，外加4个8bit的报告者SSRC。
 
@@ -105,7 +105,7 @@ RR包中的接收质量反馈不仅对发送端有用，对其他参与者和第
 
 发送端可以使用LSR和DLSR字段来计算它与每个接收端之间的往返时间（rtt）。当接收到一个与之相关的RR包时，发送端用当前的时间减去LSR字段，以得到发送SR到接收此RR之间的延迟。发送端然后再减去DLSR字段以消除接收端延迟带来的偏移，从而获得网络往返时间。该流程如图5.4所示，这是取自RTP规范的一个示例。（注意，RFC1889标准中有一个错误，此错误已经在RTP新版本中得到更正）
 
-![图5.4 计算网络时间（RTT）的样例](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.4.png)
+![图5.4 计算网络时间（RTT）的样例](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.4.png)
 
 注意，计算的结果是网络往返时间（RTT），它不包括在端点上的任何处理时间。例如，接收端必须缓冲数据以用来消除抖动所带来的影响，然后才能去播放媒体（参见第六章《媒体采集、播放和时序》）。
 
@@ -129,7 +129,7 @@ RR包中的接收质量反馈不仅对发送端有用，对其他参与者和第
 
 发送端报告的包类型为200，其格式如图5.5所示。有效负载包含一个24字节的发送端信息块，后面跟着0个或多个接收端报告块，由RC字段标识，类似于接收端报告报。当发送端也是接受方的时候，接收端报告块就出现了。
 
-![图5.5 RTCP SR包格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.5.png)
+![图5.5 RTCP SR包格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.5.png)
 
 NTP时间戳是一个64位的无符号值，表示发送这个RTCP SR包的时间。它的格式是NTP时间戳，时间从1900年1月1日开始计算秒，低32bit代表秒的小数部分（fractions of second）（也就是64位定点值，二进制小数点位于32bit之后）。如果要将UNIX的时间戳（从1970年1月1日开始的秒数）转化为NTP时间，那么需要添加2,208,988,800秒。
 
@@ -137,7 +137,7 @@ NTP时间戳是一个64位的无符号值，表示发送这个RTCP SR包的时�
 
 RTP时间戳与NTP时间戳的对应的时间是相同的，但是，它是以RTP媒体时钟的基准单位表示的。这个值，通常与前一个数据包的RTP时间戳不同，因为自该数据包中的数据被采样已经经过了一段时间了。图5.6显示了SR包时间戳的一个示例。SR包具有与发送它的时间相对应的RTP时间戳，这与前后的RTP数据包都不对应。
 
-![图5.6在RTCP的SR包中使用时间戳](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.6.png)
+![图5.6在RTCP的SR包中使用时间戳](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.6.png)
 
 发送端的包计数，是这个同步源自会话开始以来，生成的数据包的总数。发送端的字节计数是这些数据包的有效负载（playload）中包含的字节数（不包括包头或者填充）。
 
@@ -157,13 +157,13 @@ RTCP也可以用来传递源描述（SDES）数据包，提供参与者认证和
 
 每个源描述包在RTCP包中类型定义为202，具体如图5.7所示。SDES包包含0个或者多个SDES项列表，具体个数由包头SC字段表示，每个SDES项包含一个源的信息。
 
-![图5.7 RTCP中SDES包格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.7.png)
+![图5.7 RTCP中SDES包格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.7.png)
 
 应用有可能生成SDES项为空列表的包，在这种场景下，RTCP公共包头中的SC和length字段都为0.在正常情况下，SC应该为1（混流器（mixers）和转换器（translators）所聚集的转发信息产生的包会有较大的SDES项的列表）。
 
 每个SDES项目列表从所描述的源的SSRC开始，然后是一个或者多个条目，具体格式参见图5.8所示。每个条目以类型和长度字段开始，然后是UTF-8格式的项目文本本身。length字段标识文本中有多少字节；文本不是以NULL结尾的。
 
-![图5.8 SDES条目格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.8.png)
+![图5.8 SDES条目格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.8.png)
 
 每个SDES项中的条目都是以连续的方式打包到包中，没有分隔或者填充。条目列表（list of item）以一个或者多个空的字节结束，当解析到第一个字节为0类型的时候，意味着这个列表结束。0类型字节后面不会跟长度字节，但是如果需要填充，则包括其他的空字节，直到达到32-bit边界为止。这个填充（padding）与RTCP包头中的P位表示的填充是分开的。带有零项的列表（四个空字节）是有效的，但是没有意义。
 
@@ -197,7 +197,7 @@ CNAME是应用必须要传输的唯一的SDES项（其他项可选）。在实�
 
 图5.9显示了一个包含CNAME和NAME项的完整RTCP源描述包的示例。请注意在SDES项list的末尾使用了填充（padding），以确保数据包是32bits的倍数。
 
-![图5.9 SDES包样例](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.9.png)
+![图5.9 SDES包样例](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.9.png)
 
 ### 解析器（parser）问题
 
@@ -215,7 +215,7 @@ Bye数据包的重要性在一定程度上取决于应用。它总是表明一�
 
 Bye包的标识类型为203，其格式如图5.10所示。公共的RTCP包头中的RC字段表示SSRC标识符的数量。其存在为0的可能性，标识为0时无用。在接收到Bye包时，实现时应该假设此源已经离开了会话，并忽略来自该源的任何后续的RTP和RTCP包。最重要的是，当收到Bye包之后，需要为此参与者保留一段时间的连接状态，因为要允许延迟到达的数据包被接收到。
 
-![图5.10 RTCP中Bye包的格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.10.png)
+![图5.10 RTCP中Bye包的格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.10.png)
 
 本章后面的《参与者数据库》一节，专门对参与者超时和RTCP Bye包相关的状态维护的问题进行了说明。
 
@@ -226,7 +226,7 @@ Bye包还可能包含了表示离开会话原因的文本，适合在用户界�
 最后一类RTCP包（APP）允许应用来自己定义扩展。它的包类型为204，格式如图5.11所示。应用定义的包名（application-defined 
 packet name）由4个字符组成唯一的标识，每个字符都得从ASCII字符集中选择，并区分大小写。建议选择包名称来匹配它所代表的应用，并由应用来协商子类型值的选择。包其余部分被用于应用的特定需求。
 
-![图5.11 RTCP APP包格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.11.png)
+![图5.11 RTCP APP包格式](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.11.png)
 
 应用自定义的包用于RTCP的非标准扩展和验证新特性。目的是，验证者首先使用APP来验证新特性，然后如果新特性有广泛的用途，那么就注册为新的包类型。一些应用生成的包或实现方案，应该忽略识别不出来的应用包。
 
@@ -258,7 +258,7 @@ packet name）由4个字符组成唯一的标识，每个字符都得从ASCII字
 
 为了实现媒体流的保密性，可以对RTCP包进行加密，当加密时，每个复合包包含一个额外的32bit随机前缀，如图5.12所示，以帮助避免明文攻击。
 
-![图5.12 一个正确填充使用RTCP加密包的例子](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.12.png)
+![图5.12 一个正确填充使用RTCP加密包的例子](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.12.png)
 
 隐私和安全会在第13章《安全注意事项》中进行详细的讨论。
 
@@ -552,7 +552,7 @@ Rosenberg研究了这一现象，并报告了一个案例，在这个案例中�
 
 Rosenberg研究了这种现象，并报告了一次有10,000名成员参加会议的情况。 他的模拟显示，在这样的步进连接中，所有10,000个成员都尝试在前2.5秒内发送RTCP数据包，这几乎是所需速率的3,000倍。这样的数据包突发将导致极端的网络拥塞，这对于低速率控制协议而言并不是理想的结果。
 
-![图5.13 前向重估对RTCP发送速率的影响](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/image/Figure_5.13.png)
+![图5.13 前向重估对RTCP发送速率的影响](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/master/img/Figure_5.13.png)
 
 作为另一个示例，考虑上一节“基本传输规则”中讨论的场景，其中一个新的听众，使用多播RTP的方式加入到一个已经建立的互联网电台。当听众加入会话时，第一个RTCP包，像之前一样被调度，在应用启动的1.25秒到3.75秒之间。当预定的传输时间到达时，就会出现差异：应用不是发送数据包，而是根据当前成员数量重新考虑发送时间。如前所述，假设一个随机的初始时间间隔为2.86秒，应用将从其他成员接收到大约19个RTCP包，新的平均时间间隔变为2.85秒：
 
