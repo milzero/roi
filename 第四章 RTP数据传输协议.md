@@ -73,7 +73,7 @@ m=video 51372 RTP/AVP 98
 a=rtpmap:98 H263-1998/90000
 ```
 
-在我们对RTP的讨论时，需要关注的是 c  和 m 这两行（用于传递RTP会话的地址和端口并定义所使用的配置文件和有效负载类型）和 a = rtpmap 行（用于动态分配有效负载类型）。
+在我们讨论RTP时，需要关注的是 c  和 m 这两行（用于传递RTP会话的地址和端口并定义所使用的配置文件和有效负载类型）和 a = rtpmap 行（用于动态分配有效负载类型）。
 
 该示例描述了两个RTP会话：音频通过生存时间127发送到端口49170上的IPv4多播组224.2.17.12，视频被发送到端口51372上的同一多播组。音频和视频都使用RTP / AVP作为他们的传输工具；这是使用RTP配置文件进行音频和视频会议的RTP传输，只需进行最少的控制。
 
@@ -109,7 +109,7 @@ extended_seq_num = seq_num + (65536 * wrap_around_count)
 由于可能会丢包或乱序，因此在序列号回零时，保持翻转计数器（wrap-around-count）并不只是增加计数那么简单。 RTP规范中用于维护翻转计数器的算法：
 
 ```c++
-uint16_t udelta = seq – max_seq
+uint16_t udelta = seq – max_seq;
 if (udelta < max_dropout) {
   if (seq < max_seq) {
   wrap_around_count++
@@ -184,7 +184,7 @@ RTP数据包上的时间戳在每个翻转周期内不一定是唯一的。如�
 
 ### 同步源synchronization source
 
-synchronization source（SSRC）标识RTP会话中的参与者。它是一个临时的，每个会话的标识符通过RTP控制协议映射到一个长期的规范名称CNAME（请参阅第五章RTP控制协议标题为RTCP SDES：Source Description的部分）。
+synchronization source（SSRC）标识RTP会话中的参与者。SSRC是临时的，每个会话的标识符通过RTP控制协议映射到长期的规范名称CNAME（请参阅第五章RTP控制协议标题为RTCP SDES：Source Description的部分）。
 
 SSRC是一个32bit整数，由参与者加入会话时随机选择。选择了SSRC标识符后，参与者就可以在发送数据是使用它。由于SSRC值是在本地选择的，因此两个参与者可能会选择相同的值。当一个应用发现从另一个应用收到的数据包包含为其自身选择的SSRC标识符时，可以检测到此类冲突。
 
