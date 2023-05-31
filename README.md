@@ -1,7 +1,6 @@
 # RTP-Audio-and-Video-for-the-Internet
 
 - 作者：[Colin Perkins](https://csperkins.org/)
-- 译者：luzhiwei2015@126.com
 
 ## 本书概述
 
