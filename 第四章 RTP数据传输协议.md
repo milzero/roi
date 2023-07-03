@@ -51,9 +51,9 @@ RTP报头的payload type或PT字段标识RTP包传输的媒体。接收端检查
 
 有效负载类型是根据MIME名称空间命名的。该名称空间最初是为电子邮件定义的，用于标识附件的内容，但此后它已成为媒体格式的通用名称空间，并在许多应用中使用。 MIME类型在RTP的使用相对较新(有效负载类型名称最初占用一个单独的名称空间) , 但它功能强大，为每种类型的媒体提供了一个中央存储库的传输和编码选项。
 
-![Example of static RTP payload](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/img/image/Table4.1.png)
+![Example of static RTP payload](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/img/image/4.1.png)
 
-![Example of static RTP payload](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/img/image/Table4.1.1.png)
+![Example of static RTP payload](https://raw.githubusercontent.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/img/image/4.1.1.png)
 
 所有负载类型都应该具有MIME类型注册。更新的有效负载类型将其包含在其各自规范中
 
@@ -309,7 +309,7 @@ mixer 是一个中间系统，它从一组源中接收RTP数据包并将其组�
 
 混流器具有会话的唯一视图：它将所有源视为同步源，而其他参与者则看到一些同步源和一些贡献源。例如，在图4.5中，参与者X从三个同步源（Y，Z和M）接收数据，而A和B在来自M的混合数据包中贡献源。参与者A将B和M视为同步源，X、Y和Z是M的贡献源。混流器为会话的每一半分别生成RTCP发送端和接收端报告，并且不在各自之间转发它们。它转发RTCP源描述和BYE数据包，以便可以识别所有参与者（在第五章，RTP控制协议中讨论了RTCP）。
 
-图4.5。混频器M将所有源视为同步源。其他参与者（A，B，X，Y和Z）则看到了同步源和贡献源的组合。
+图4.5 混频器M将所有源视为同步源。其他参与者（A，B，X，Y和Z）则看到了同步源和贡献源的组合。
 混流器不需要在会话的每半部分使用相同的SSRC，但是它必须将RTCP源描述和BYE数据包发送到两个会话的所有SSRC标识符。否则，一半的参与者不会知道SSRC正在另一半使用，他们可能会与之发生冲突。
 
 跟踪转换器或混流器每一侧上存在哪些源非常重要
