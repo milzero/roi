@@ -1,6 +1,34 @@
 [book]
-authors = ["milzero"]
-language = "en"
-multilingual = false
-src = "src"
 title = "RTP-Audio-and-Video-for-the-Internet"
+description = "RTP-Audio-and-Video-for-the-Internet"
+authors = ["luzhiwei"]
+language = "zh-CN"
+src = "src"
+
+[rust]
+edition = "2018"
+
+[output.html]
+mathjax-support = true
+site-url = "/mdBook/"
+git-repository-url = "https://github.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/tree/master/src"
+edit-url-template = "https://github.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/tree/master/src/{path}"
+
+[output.html.playground]
+editable = true
+line-numbers = true
+
+[output.html.code.hidelines]
+python = "~"
+
+[output.html.search]
+limit-results = 20
+use-boolean-and = true
+boost-title = 2
+boost-hierarchy = 2
+boost-paragraph = 1
+expand = true
+heading-split-level = 2
+
+[output.html.redirect]
+"/format/config.html" = "configuration/index.html"
