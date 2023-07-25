@@ -11,8 +11,8 @@ edition = "2018"
 [output.html]
 mathjax-support = true
 site-url = "/mdBook/"
-git-repository-url = "https://github.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/tree/master/src"
-edit-url-template = "https://github.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/tree/master/src/{path}"
+git-repository-url = "https://github.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/tree/master"
+edit-url-template = "https://github.com/milzero/RTP-Audio-and-Video-for-the-Internet-Chinese-Version/tree/master/{path}"
 
 [output.html.playground]
 editable = true
